@@ -14,7 +14,205 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      badges: {
+        Row: {
+          code: string
+          description: string
+          icon: string
+          id: string
+          title: string
+        }
+        Insert: {
+          code: string
+          description: string
+          icon?: string
+          id?: string
+          title: string
+        }
+        Update: {
+          code?: string
+          description?: string
+          icon?: string
+          id?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      chess_progress: {
+        Row: {
+          ai_losses: number
+          ai_wins: number
+          current_difficulty: string
+          puzzles_solved: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ai_losses?: number
+          ai_wins?: number
+          current_difficulty?: string
+          puzzles_solved?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ai_losses?: number
+          ai_wins?: number
+          current_difficulty?: string
+          puzzles_solved?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      lesson_progress: {
+        Row: {
+          completed_at: string
+          id: string
+          lesson_id: string
+          score: number
+          stars: number
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          id?: string
+          lesson_id: string
+          score?: number
+          stars?: number
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          id?: string
+          lesson_id?: string
+          score?: number
+          stars?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_progress_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lessons: {
+        Row: {
+          age_band: string
+          content: Json
+          created_at: string
+          description: string | null
+          difficulty: number
+          id: string
+          order_index: number
+          subject: string
+          title: string
+          xp_reward: number
+        }
+        Insert: {
+          age_band?: string
+          content: Json
+          created_at?: string
+          description?: string | null
+          difficulty?: number
+          id?: string
+          order_index: number
+          subject: string
+          title: string
+          xp_reward?: number
+        }
+        Update: {
+          age_band?: string
+          content?: Json
+          created_at?: string
+          description?: string | null
+          difficulty?: number
+          id?: string
+          order_index?: number
+          subject?: string
+          title?: string
+          xp_reward?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          age_band: string
+          avatar_id: number
+          coins: number
+          created_at: string
+          current_streak: number
+          display_name: string
+          id: string
+          last_active_date: string | null
+          level: number
+          longest_streak: number
+          updated_at: string
+          xp: number
+        }
+        Insert: {
+          age_band?: string
+          avatar_id?: number
+          coins?: number
+          created_at?: string
+          current_streak?: number
+          display_name?: string
+          id: string
+          last_active_date?: string | null
+          level?: number
+          longest_streak?: number
+          updated_at?: string
+          xp?: number
+        }
+        Update: {
+          age_band?: string
+          avatar_id?: number
+          coins?: number
+          created_at?: string
+          current_streak?: number
+          display_name?: string
+          id?: string
+          last_active_date?: string | null
+          level?: number
+          longest_streak?: number
+          updated_at?: string
+          xp?: number
+        }
+        Relationships: []
+      }
+      user_badges: {
+        Row: {
+          badge_id: string
+          earned_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          badge_id: string
+          earned_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          badge_id?: string
+          earned_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_badges_badge_id_fkey"
+            columns: ["badge_id"]
+            isOneToOne: false
+            referencedRelation: "badges"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
